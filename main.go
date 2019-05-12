@@ -10,7 +10,10 @@ import (
 
 func main() {
 
-	img := benoit.Mandelbrot(-.80, 2.5, 1024)
+	bounds := image.Rect(0, 0, 2048, 2048)
+	img := image.NewRGBA(bounds)
+
+	benoit.MandelbrotSampled(-.80, 2.5, img)
 
 	if err := savePNG("mandel.png", img); err != nil {
 		panic(err)
